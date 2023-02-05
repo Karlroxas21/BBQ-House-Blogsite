@@ -106,31 +106,24 @@
 
 	  			<div class="col-md-4">
 	  				<div class="row">
-						<form action="login.php" method="POST" class="form-control" id="frmLogin" enctype="multipart/form-data" autocomplete="off">
-							<input type="hidden" class="form-control" id="form_name" name="form_name" value="frmLogin">
+						<form action="login.php" method="POST" class="form-control needs-validation" id="frmLogin" enctype="multipart/form-data" autocomplete="off" novalidate>
 							<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-							<?php if (isset($_GET['error'])) { ?>
-								<div class="alert alert-danger" role="alert">
-									<?=htmlspecialchars($_GET['error'])?>
-								</div>
-								<?php } ?>
-
-								<?php if (isset($_GET['success'])) { ?>
-								<div class="alert alert-warning" role="alert">
-									<?=htmlspecialchars($_GET['success'])?>
-								</div>
-								<?php } ?>
 
 							<div class="mb-3">
 								<label for="email" class="form-label">Email</label>
-								<input type="email" class="form-control" id="Email" name="Email" value="<?php if(isset($_GET['email']))echo(htmlspecialchars($_GET['email'])) ?>">
+								<input type="email" class="form-control" id="Email" name="Email" required>
+								<div class="invalid-feedback">
+									Invalid Email Address
+								</div>
 							</div>
 
 							<div class="mb-3">
 								<label for="Password" class="form-label">Password</label>
-								<input type="Password" class="form-control" id="Password" name="Password">
-								<input type="checkbox" onclick="togglePassword(this)"> Show Password<br><br>
+								<input type="Password" class="form-control" id="Password" name="Password" required>
+								<div class="invalid-feedback">
+									Invalid Password
+								</div>
+								<input type="checkbox" onclick="togglePassword(this)"> Show Password</input>
 							</div>	
 
 							<div class="d-grid gap-2">

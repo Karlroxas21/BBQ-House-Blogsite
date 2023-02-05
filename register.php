@@ -20,18 +20,14 @@ if(isset($_POST['Submit'])) {
 
 	
 if (mysqli_query($mysqli, $sql)) {
-	header("Location: index.php?success=Account created successfully");
-	echo "<scipt>Account created successfully</script>";
-  } else {
-	echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+	echo "<script>alert('Account created succesfuly');
+	window.location.href= 'index.php'</script>";
   }
 } else {
-	header("Location: index.php?error=The passwords you entered do not match");
-	echo "<scip>The passwords you entered do not match</script>";
+	echo "<script>alert('The passwords you entered do not match');
+	window.location.href= 'index.php'</script>";
 }
 }
 
-	// echo "<scipt>alert('Data added successfully.');</script>";
-	echo "<script>window.location.href = 'index.php';</script>";
 
 ?>
