@@ -173,11 +173,22 @@
 			</div>
 			<div class="mb-3">
 				<label for= "Password" class="form-label">Password</label>
-				<input type ="password" class="form-control" id="Password" name="Password" placeholder="Password" required>
+				<input type ="password" class="form-control" id="Password" name="Password" placeholder="Password" required
+				required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+				title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+				<div class="valid-feedback">
+					Looks good!
+				</div>
+				<div class="invalid-feedback">
+					Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters
+				</div>
 			</div>
 			<div class="mb-3">
 				<label for="psw-repeat"class="form-label">Repeat Password</label>
 				<input type="password" class="form-control" placeholder="Repeat Password" name="cpassword" id="cpassword" required>
+				<div class="invalid-feedback">
+					Passwords don't match
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type ="submit" name="Submit" class="btn btn-primary">Submit</button>
@@ -275,6 +286,19 @@
 						}, false)
 						})
 					})()
+			</script>
+			 <script>
+				// Check if passwords match
+				$(document).ready(function() {
+				$("form").submit(function(event) {
+					var password = $("#Password").val();
+					var cpassword = $("#cpassword").val();
+					if (password != cpassword) {
+					$(".invalid-feedback").text("Passwords don't match");
+					event.preventDefault();
+					}
+				});
+				});
 			</script>
 		</body>
 		</html>
