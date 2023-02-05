@@ -11,8 +11,8 @@ try {
 }
 // LOGIN USER
 if (isset($_POST['Email']) && isset($_POST['Password'])) {
-	$email = $_POST['Email'];
-	$pass = $_POST['Password'];
+	$email = mysqli_real_escape_string($mysqli, htmlspecialchars($_POST['Email']));
+	$pass = mysqli_real_escape_string($mysqli, htmlspecialchars($_POST['Password']));
 
 	if(empty($email)){
 		header("Location: index.php?error=Email is required");

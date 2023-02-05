@@ -150,14 +150,26 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="register.php" method="POST">
+          <form action="register.php" method="POST" class="row g-3 needs-validation" novalidate>
 			<div class="mb-3">
 				<label for= "Name" class="form-label">Name</label>
 				<input type ="text" class="form-control" id="Name" name="Name" placeholder="Name" required>
 			</div>
+			<div class="valid-feedback">
+      			Looks good!
+    		</div>
+			<div class="invalid-feedback">
+        		Please choose a name.
+      		</div>
 			<div class="mb-3">
 				<label for= "Email" class="form-label">Email Address</label>
 				<input type ="email" class="form-control" id="Email" name="Email" placeholder="name@example.com" required>
+				<div class="valid-feedback">
+      			Looks good!
+    			</div>
+				<div class="invalid-feedback">
+        			Please choose a Email Address.
+      			</div>
 			</div>
 			<div class="mb-3">
 				<label for= "Password" class="form-label">Password</label>
@@ -241,6 +253,29 @@
 				</section>
 			</main>
 			<script src="js/bootstrap.min.js"></script>
+
+			<!-- Registration Validation -->
+			<script>
+				(function () {
+					'use strict'
+
+					// Fetch all the forms we want to apply custom Bootstrap validation styles to
+					var forms = document.querySelectorAll('.needs-validation')
+
+					// Loop over them and prevent submission
+					Array.prototype.slice.call(forms)
+						.forEach(function (form) {
+						form.addEventListener('submit', function (event) {
+							if (!form.checkValidity()) {
+							event.preventDefault()
+							event.stopPropagation()
+							}
+
+							form.classList.add('was-validated')
+						}, false)
+						})
+					})()
+			</script>
 		</body>
 		</html>
 

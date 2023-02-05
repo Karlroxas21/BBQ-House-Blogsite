@@ -4,10 +4,10 @@ if(isset($_POST['Submit'])) {
 
 	include 'config.php';
 
-	$name =$_POST['Name'];
-	$email =$_POST['Email'];
-	$pass =$_POST['Password'];
-	$cpassword=$_POST['cpassword'];
+	$name = htmlspecialchars($_POST['Name']);
+	$email = htmlspecialchars($_POST['Email']);
+	$pass = htmlspecialchars($_POST['Password']);
+	$cpassword= htmlspecialchars($_POST['cpassword']);
 	$createdDate = date("Y-m-d");
 	$modifiedDate = date("Y-m-d");
 	if ($pass == $cpassword) {
