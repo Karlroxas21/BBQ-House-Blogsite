@@ -12,7 +12,8 @@ if(isset($_POST['delete']))
     if($query_run)
     {
         //echo "<scipt>alert('Account Deleted Successfully');</script>";
-        header("location:ui_manage_account.php");
+        echo "<script>window.location.href = 'ui_manage_account.php'</script>";
+
     }
 }
 ?>
