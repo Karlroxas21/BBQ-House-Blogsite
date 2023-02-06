@@ -6,13 +6,17 @@ if(isset($_POST['delete2']))
 {
     $id = $_POST['ID'];
 
-    $query = "DELETE FROM tblcomments WHERE ID='$id'";
-    $query_run = mysqli_query($connection, $query);
+    $stmt = mysqli_prepare($connection, "DELETE FROM tblcomments WHERE ID=?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    $result=mysqli_stmt_execute($stmt);
 
-    if($query_run)
-    {
-        //echo "<scipt>alert('Comment Deleted Successfully.');</script>";
-        echo "<script>window.location.href = 'ui_manage_comment.php'</script>"  ;
+    // $query = "DELETE FROM tblcomments WHERE ID='$id'";
+    // $result = mysqli_query($connection, $query);
+
+
+    if($result){
+        echo "<script>alert('Comment Deleted Successfully.');
+        window.location.href ='ui_manage_comment.php'</script>";
     }
 }
 ?>
