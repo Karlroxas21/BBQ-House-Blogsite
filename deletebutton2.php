@@ -12,7 +12,7 @@ if(isset($_POST['delete2']))
     if($query_run)
     {
         //echo "<scipt>alert('Comment Deleted Successfully.');</script>";
-        header("location:ui_manage_comment.php");
+        echo "<script>window.location.href = 'ui_manage_comment.php'</script>"  ;
     }
 }
 ?>
