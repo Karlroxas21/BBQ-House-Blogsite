@@ -104,9 +104,12 @@
           $name = $_POST['Name'];
           $email = $_POST['Email'];
           $pass = password_hash($_POST['Password'], PASSWORD_DEFAULT);
-          $query = "UPDATE tblaccounts SET Name='$name', Email='$email', Password='$pass' WHERE ID='$id'";
-          $query_run = mysqli_query($connection, $query);
-         
+          $query = "UPDATE tblaccounts SET Name='$name', Email='$email', Password='$pass' WHERE ID=?";
+          // $ = mysqli_query($connection, $query);
+          $query_run = mysqli_prepare($connection, $query);
+          mysqli_stmt_bind_param($query_run, "i", $id);
+          mysqli_stmt_execute($query_run);
+          
           if($query_run)
           {
             header("location:ui_manage_account.php");
