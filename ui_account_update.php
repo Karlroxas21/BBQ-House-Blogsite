@@ -62,17 +62,18 @@
       $db =mysqli_select_db($connection, 'blogsite');
       
       $id = $_POST['ID'];
-      
-      $query = "SELECT * FROM tblaccounts WHERE ID='$id'"; 
-      $query_run = mysqli_query($connection, $query);
-      
-      if($query_run)
+
+      $stmt = mysqli_prepare($connection, "SELECT * FROM tblaccounts WHERE ID=?");
+      mysqli_stmt_bind_param($stmt, "i", $id);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+            
+      if($result)
       {
-        while ($row = mysqli_fetch_array($query_run))
+        while ($row = mysqli_fetch_array($result))
         {
           ?>
 
-          
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">Edit Users Accounts</h1>
@@ -112,7 +113,8 @@
           
           if($query_run)
           {
-            header("location:ui_manage_account.php");
+            echo "<script>window.location.href = 'ui_manage_account.php'</script>"  ;
+
           }
         }
         ?>
