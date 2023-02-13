@@ -91,7 +91,7 @@
           </div>
           <div class="mb-3">
             <label for="Password" class="form-label">Password</label>
-            <input type="text" class="form-control" id="Password" name="Password" value="<?php echo $row['Password'] ?>" placeholder="Enter Password" required>
+            <input type="password" class="form-control" id="Password" name="Password" placeholder="Enter Password">
           </div>
           <div class="mb-3 float-end">
             <button type="submit" name="update" class="btn bt-sm btn-primary p-3">Save</button>
@@ -102,19 +102,33 @@
         <?php
         if(isset($_POST['update']))
         {
-          $name = $_POST['Name'];
-          $email = $_POST['Email'];
-          $pass = password_hash($_POST['Password'], PASSWORD_DEFAULT);
-          $query = "UPDATE tblaccounts SET Name='$name', Email='$email', Password='$pass' WHERE ID=?";
-          // $ = mysqli_query($connection, $query);
-          $query_run = mysqli_prepare($connection, $query);
-          mysqli_stmt_bind_param($query_run, "i", $id);
-          mysqli_stmt_execute($query_run);
-          
-          if($query_run)
-          {
-            echo "<script>window.location.href = 'ui_manage_account.php'</script>"  ;
-
+          if($_POST['Password'] == ''){
+            $name = $_POST['Name'];
+            $email = $_POST['Email'];
+            $query = "UPDATE tblaccounts SET Name='$name', Email='$email' WHERE ID=?";
+            // $ = mysqli_query($connection, $query);
+            $query_run = mysqli_prepare($connection, $query);
+            mysqli_stmt_bind_param($query_run, "i", $id);
+            mysqli_stmt_execute($query_run);
+            
+            if($query_run)
+            {
+              echo "<script>window.location.href = 'ui_manage_account.php'</script>"  ;
+            }
+          }else{
+            $name = $_POST['Name'];
+            $email = $_POST['Email'];
+            $pass = password_hash($_POST['Password'], PASSWORD_DEFAULT);
+            $query = "UPDATE tblaccounts SET Name='$name', Email='$email', Password='$pass' WHERE ID=?";
+            // $ = mysqli_query($connection, $query);
+            $query_run = mysqli_prepare($connection, $query);
+            mysqli_stmt_bind_param($query_run, "i", $id);
+            mysqli_stmt_execute($query_run);
+            
+            if($query_run)
+            {
+              echo "<script>window.location.href = 'ui_manage_account.php'</script>"  ;
+            }
           }
         }
         ?>
