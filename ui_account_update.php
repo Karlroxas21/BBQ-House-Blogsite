@@ -91,8 +91,12 @@
           </div>
           <div class="mb-3">
             <label for="Password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="Password" name="Password" placeholder="Enter Password">
+            <input type="password" class="form-control" id="Password" name="Password" placeholder="Enter Password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+				    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+            <input type="checkbox" onclick="togglePassword(this)"> Show Password</input>
           </div>
+          
           <div class="mb-3 float-end">
             <button type="submit" name="update" class="btn bt-sm btn-primary p-3">Save</button>
             <a href="ui_manage_account.php" class="btn btn-sm btn-danger p-3">Cancel</a>
@@ -149,5 +153,17 @@
   <script>
     feather.replace()
   </script>
+  <script>
+	function togglePassword(btn) {
+		var passwordInput = document.getElementById("Password");
+		if (passwordInput.type === "password") {
+			passwordInput.type = "text";
+			btn.value = "Hide";
+		} else {
+			passwordInput.type = "password";
+			btn.value = "Show";
+		}
+		}
+	</script>
 </body>
 </html>
