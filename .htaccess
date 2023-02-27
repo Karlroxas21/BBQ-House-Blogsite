@@ -1,1 +1,6 @@
 Options -Indexes
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+Header always set Access-Control-Allow-Origin "http://localhost"
+
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'nonce-checkpw' 'nonce-regvalidation' 'nonce-bootstrapminjs' *.fontawesome.com 'nonce-feather' 'nonce-chartjs' 'nonce-sc1'; style-src 'self'  *.fontawesome.com; img-src 'self' data:; connect-src 'self' *.fontawesome.com; font-src 'self' *.fontawesome.com; form-action 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; manifest-src 'self'; block-all-mixed-content; upgrade-insecure-requests; "
